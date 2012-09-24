@@ -25,8 +25,8 @@ $.fn.fancyZoom = (options) ->
     width += 60
     height += 50
 
-    # ensure that newTop is at least 0 so it doesn't hide close button
-    newTop = Math.max((window_size.height / 2) - (height / 2) + y, 0)
+    # ensure that the top isn't too high and the close button is fully visible
+    newTop = Math.max((window_size.height / 2) - (height / 2) + y, 10)
     newLeft = (window_size.width / 2) - (width / 2)
     curTop = e.pageY
     curLeft = e.pageX
@@ -85,7 +85,7 @@ $.fn.fancyZoom = (options) ->
        <div class="zoom-content">
        </div>
        <a href="javascript:void(0)" class="zoom-close">
-         <img src="#{directory}/closebox.png" alt="×">
+         <img src="#{directory}/closebox.png" alt="&#215;">
        </a>
      </div>
     """

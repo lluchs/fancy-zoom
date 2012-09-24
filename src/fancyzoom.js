@@ -33,7 +33,7 @@
       }
       width += 60;
       height += 50;
-      newTop = Math.max((window_size.height / 2) - (height / 2) + y, 0);
+      newTop = Math.max((window_size.height / 2) - (height / 2) + y, 10);
       newLeft = (window_size.width / 2) - (width / 2);
       curTop = e.pageY;
       curLeft = e.pageX;
@@ -94,7 +94,7 @@
     directory = (options && options.directory ? options.directory : "img");
     zooming = false;
     if ($("#zoom-box").length === 0) {
-      html = "<div id=\"zoom-box\" style=\"display:none;\">\n   <div class=\"zoom-content\">\n   </div>\n   <a href=\"javascript:void(0)\" class=\"zoom-close\">\n     <img src=\"" + directory + "/closebox.png\" alt=\"×\">\n   </a>\n </div>";
+      html = "<div id=\"zoom-box\" style=\"display:none;\">\n   <div class=\"zoom-content\">\n   </div>\n   <a href=\"javascript:void(0)\" class=\"zoom-close\">\n     <img src=\"" + directory + "/closebox.png\" alt=\"&#215;\">\n   </a>\n </div>";
       $("body").append(html);
       $("html").click(function(e) {
         if ($(e.target).parents("#zoom-box:visible").length === 0) {
