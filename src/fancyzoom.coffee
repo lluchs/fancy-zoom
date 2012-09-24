@@ -5,8 +5,6 @@ $.fn.fancyZoom = (options) ->
     return false  if zooming
     return hide() if zoom.data('el') is this
 
-    zooming = true
-    zoom.data 'el', this
     zoom_width = options.width
     zoom_height = options.height
     width = $(window).innerWidth()
@@ -19,8 +17,13 @@ $.fn.fancyZoom = (options) ->
       x: x
       y: y
 
-    width = (zoom_width or @naturalWidth) + 60
-    height = (zoom_height or @naturalHeight) + 50
+    width = (zoom_width or @naturalWidth)
+    height = (zoom_height or @naturalHeight)
+
+    return false if width <= @width or height <= @height
+
+    width += 60
+    height += 50
 
     # ensure that newTop is at least 0 so it doesn't hide close button
     newTop = Math.max((window_size.height / 2) - (height / 2) + y, 0)
@@ -52,6 +55,8 @@ $.fn.fancyZoom = (options) ->
       zoom_close.show()
       zooming = false
 
+    zooming = true
+    zoom.data 'el', this
     false
   hide = ->
     return false  if zooming

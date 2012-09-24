@@ -14,8 +14,6 @@
       if (zoom.data('el') === this) {
         return hide();
       }
-      zooming = true;
-      zoom.data('el', this);
       zoom_width = options.width;
       zoom_height = options.height;
       width = $(window).innerWidth();
@@ -28,8 +26,13 @@
         x: x,
         y: y
       };
-      width = (zoom_width || this.naturalWidth) + 60;
-      height = (zoom_height || this.naturalHeight) + 50;
+      width = zoom_width || this.naturalWidth;
+      height = zoom_height || this.naturalHeight;
+      if (width <= this.width || height <= this.height) {
+        return false;
+      }
+      width += 60;
+      height += 50;
       newTop = Math.max((window_size.height / 2) - (height / 2) + y, 0);
       newLeft = (window_size.width / 2) - (width / 2);
       curTop = e.pageY;
@@ -58,9 +61,12 @@
         width: width,
         height: height
       }, 500, null, function() {
+        var zooming;
         zoom_close.show();
         return zooming = false;
       });
+      zooming = true;
+      zoom.data('el', this);
       return false;
     };
     hide = function() {
