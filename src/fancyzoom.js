@@ -7,7 +7,7 @@
   $.fn.fancyZoom = function(options) {
     var directory, hide, html, show, zoom, zoom_close, zoom_content, zooming;
     show = function(e) {
-      var curLeft, curTop, height, newLeft, newTop, width, window_size, x, y, zoom_height, zoom_width, zooming;
+      var curLeft, curTop, height, newLeft, newTop, new_width, width, window_size, x, y, zoom_height, zoom_width, zooming;
       if (zooming) {
         return false;
       }
@@ -28,11 +28,14 @@
       };
       width = zoom_width || this.naturalWidth;
       height = zoom_height || this.naturalHeight;
+      if (window_size.width < width) {
+        new_width = window_size.width - 50;
+        height *= new_width / width;
+        width = new_width;
+      }
       if (width <= this.width || height <= this.height) {
         return false;
       }
-      width += 60;
-      height += 50;
       newTop = Math.max((window_size.height / 2) - (height / 2) + y, 10);
       newLeft = (window_size.width / 2) - (width / 2);
       curTop = e.pageY;
