@@ -100,8 +100,10 @@
       html = "<div id=\"zoom-box\" style=\"display:none;\">\n   <div class=\"zoom-content\">\n   </div>\n   <a href=\"javascript:void(0)\" class=\"zoom-close\">\n     <img src=\"" + directory + "/closebox.png\" alt=\"&#215;\">\n   </a>\n </div>";
       $("body").append(html);
       $("html").click(function(e) {
-        if ($(e.target).parents("#zoom-box:visible").length === 0) {
+        if (zoom.is(':visible') && $(e.target).parents('#zoom-box').length === 0) {
           return hide();
+        } else {
+          return void 0;
         }
       });
       $(document).keyup(function(event) {

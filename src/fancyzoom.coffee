@@ -93,7 +93,11 @@ $.fn.fancyZoom = (options) ->
     """
     $("body").append html
     $("html").click (e) ->
-      hide()  if $(e.target).parents("#zoom-box:visible").length is 0
+      # Don't handle clicks on the zoom box.
+      if zoom.is(':visible') and $(e.target).parents('#zoom-box').length is 0
+        hide()
+      else
+        undefined
 
     $(document).keyup (event) ->
       hide()  if event.keyCode is 27 and $("#zoom-box:visible").length > 0
