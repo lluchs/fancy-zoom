@@ -33,7 +33,7 @@
         height *= new_width / width;
         width = new_width;
       }
-      if (width <= this.width || height <= this.height) {
+      if (!options.showAlways && (width <= this.width || height <= this.height)) {
         return false;
       }
       newTop = Math.max((window_size.height / 2) - (height / 2) + y, 10);

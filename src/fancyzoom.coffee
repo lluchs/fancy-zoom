@@ -25,7 +25,7 @@ $.fn.fancyZoom = (options) ->
       height *= new_width / width
       width = new_width
 
-    return false if width <= @width or height <= @height
+    return false if !options.showAlways and (width <= @width or height <= @height)
 
     # ensure that the top isn't too high and the close button is fully visible
     newTop = Math.max((window_size.height / 2) - (height / 2) + y, 10)
