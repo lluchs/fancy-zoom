@@ -53,10 +53,9 @@
       if (options.closeOnClick) {
         zoom.click(hide);
       }
-      zoom_content.html($(this).clone());
-      zoom_content.children().css({
+      zoom_content.html($(this).clone().removeAttr('width height').css({
         width: '100%'
-      });
+      }));
       zoom.animate({
         top: newTop + "px",
         left: newLeft + "px",

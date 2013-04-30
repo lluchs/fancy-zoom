@@ -45,7 +45,8 @@ $.fn.fancyZoom = (options) ->
     zoom.click hide  if options.closeOnClick
 
     zoom_content.html $(this).clone()
-    zoom_content.children().css width: '100%'
+                        .removeAttr('width height')
+                        .css width: '100%'
 
     zoom.animate
       top: newTop + "px"
